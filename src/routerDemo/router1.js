@@ -12,8 +12,7 @@ function Home() {
     </div>
   );
 }
-function Me(props) {
-  console.log(props);
+function Me() {
   return (
     <div>
       <h1>admin个人中心</h1>
@@ -27,36 +26,21 @@ function Product() {
     </div>
   );
 }
-function News(props) {
-  console.log(props);
-  return (
-    <div>
-      新闻页、新闻id：{props.match.params.id}
-    </div>
-  );
-}
+
 class App extends React.Component{
   render(){
-    let meObj = {
-      pathname: "/me", // 跳转路径 
-       search: "?username=admin", // get请求参数
-       hash:"#abc", // 设置HASH值
-       state:{msg: "hello word"} // 传入组件的数据
-     };
     return(
       <div id="app">
         <div>所有页面普通内容</div>
-        <Router basename="/admin">
+        <Router>
           <div className="nav">
             <Link to='/'>Home</Link>
             <Link to='/product'>Product</Link>
-            <Link to={ meObj } replace>Me</Link>
-            <Link to='/news/456789'> News</Link>
+            <Link to='/me'>Me</Link>
           </div>
           <Route exact path="/" component={Home}></Route>
           <Route  path="/product" component={Product}></Route>
           <Route  path="/me" component={Me}></Route>
-          <Route  path="/news/:id" component={News}></Route>
         </Router>
       </div>
     )
